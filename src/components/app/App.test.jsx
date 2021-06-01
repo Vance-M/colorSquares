@@ -14,13 +14,30 @@ describe('App component', () => {
     const undo = screen.getByRole('button', { name: 'Undo' });
     const redo = screen.getByRole('button', { name: 'Redo' });
 
-    fireEvent.change(input, { target: { value: '#FF0000' } });
-    expect(input.value).toBe('#ff0000');
-    fireEvent.change(input, { target: { value: '#FF69B4' } });
-    expect(input.value).toBe('#ff69b4');
+    // behavior test like in lab submission
+    fireEvent.change(input, { target: { value: '#0dd4db' } }); //teal
+    expect(input.value).toBe('#0dd4db');//teal
+    fireEvent.change(input, { target: { value: '#5f1994' } }); //purple
+    expect(input.value).toBe('#5f1994'); //purple
+    fireEvent.change(input, { target: { value: '#968b38' } }); //gold
+    expect(input.value).toBe('#968b38'); //gold
     userEvent.click(undo);
-    expect(input.value).toBe('#ff0000');
+    expect(input.value).toBe('#5f1994'); //purple
+    userEvent.click(undo);
+    expect(input.value).toBe('#0dd4db');//teal
     userEvent.click(redo);
-    expect(input.value).toBe('#ff69b4');
+    expect(input.value).toBe('#5f1994'); //purple
+    fireEvent.change(input, { target: { value: '#d1d1d1' } }); //silver
+    expect(input.value).toBe('#d1d1d1'); //silver
+    userEvent.click(undo);
+    expect(input.value).toBe('#5f1994'); //purple
+    userEvent.click(undo);
+    expect(input.value).toBe('#0dd4db'); //teal
+    userEvent.click(redo);
+    expect(input.value).toBe('#5f1994'); //purple
+    userEvent.click(redo);
+    expect(input.value).toBe('#d1d1d1'); //silver
+    userEvent.click(redo);
+    expect(input.value).toBe('#968b38'); //gold
   });
 });

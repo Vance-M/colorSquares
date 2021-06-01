@@ -9,12 +9,10 @@ export const useRecord = () => {
     setCurrent(color[index - 1]);
     setIndex(() => index - 1);
   };
-  
   const handleRedo = () => {
     setCurrent(color[index + 1]);
     setIndex(() => index + 1);
   };
-  
   const handleRecord = ({ target }) => {
     setCurrent(target.value);
     if(color.length === 0) {

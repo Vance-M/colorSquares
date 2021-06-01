@@ -4,7 +4,6 @@ import { useRecord } from './hooks/record';
 
 function App() {
   const { color, current, index, handleRecord, handleRedo, handleUndo } = useRecord();
-
   return (
     <>
       <button onClick={handleUndo} disabled={index === 0}>Undo</button>
